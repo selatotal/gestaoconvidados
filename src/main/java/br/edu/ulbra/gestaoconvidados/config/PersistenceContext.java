@@ -1,4 +1,4 @@
-package config;
+package br.edu.ulbra.gestaoconvidados.config;
 
 import java.util.Properties;
 

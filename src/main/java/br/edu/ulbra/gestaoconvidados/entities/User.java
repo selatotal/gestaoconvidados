@@ -39,6 +39,10 @@ public class User {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Guest> guests;
 
+	public User(){
+		
+	}
+	
 	public User(Long id, String email, String password, String name, Boolean active, Profile profile) {
 		this.id = id;
 		this.email = email;
