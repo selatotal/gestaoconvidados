@@ -18,6 +18,7 @@ public class HomeController {
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(LoginInput loginInput){
+		
 		return "redirect:/home";
 	}
 	

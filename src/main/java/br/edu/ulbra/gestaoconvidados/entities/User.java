@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
 public class User {
@@ -26,6 +27,9 @@ public class User {
 	@Column(nullable = true)
 	private String password;
 
+	@Transient
+	private String passwordConfirm;
+	
 	@Column(nullable = true, length = 100)
 	private String name;
 
@@ -38,6 +42,7 @@ public class User {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Guest> guests;
+	
 
 	public User(){
 		
