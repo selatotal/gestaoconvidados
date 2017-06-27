@@ -1,1 +1,29 @@
-Lista de Usuarios
+<h1>Lista de Usuarios</h1>
+<div th:if='${param.usercreated }'>
+    Usuário criado com sucesso!
+</div>
+<div th:if='${param.userupdated }'>
+    Usuário atualizado com sucesso!
+</div>
+<div th:if='${param.usernotfound }'>
+    Usuário não encontrado!
+</div>
+<div th:if='${param.userdeleted }'>
+    Usuário excluído!
+</div>
+<div>
+    <a href="/user/new">Novo Usuário</a>
+</div>
+<table class="table">
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.profile.description}"></td>
+        <td><a th:href="@{ /user/{id}(id=${user.id}) }" >Editar</a></td>
+        <td><a th:href="@{ /user/{id}/delete(id=${user.id}) }" class="btn btn-danger">Excluir</a></td>
+    </tr>
+    </tbody>
+</table>
+
+

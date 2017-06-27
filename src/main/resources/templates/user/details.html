@@ -1,1 +1,21 @@
-Detalhe de Usuario
+<h1>Edicao de Usuarios</h1>
+<div th:if="${errors}">
+    <div th:each="error: ${errors}">
+        <span th:text="${error}" /><br />
+    </div>
+</div>
+<form class="form-inline" method="POST" th:object="${user}" th:action="@{ /user/{id}(id=${user.id}) }">
+    <input type="hidden" th:field="*{id}"/>
+    <input type="text" class="form-control" placeholder="E-Mail" th:field="*{email}"/>
+    <input type="password" class="form-control" placeholder="Senha" th:field="*{password}"/>
+    <input type="password" class="form-control" placeholder="Confirme a Senha" th:field="*{passwordConfirm}"/>
+    <input type="text" class="form-control" placeholder="Nome" th:field="*{name}"/>
+    <input type="checkbox" class="form-control" placeholder="Ativo" th:field="*{active}"/>
+    <select name="profileId" class="form-control" th:field="*{profileId}">
+        <option value="">Perfil</option>
+        <option th:each="profile : ${profiles}"
+                th:value="${profile.id}"
+                th:text="${profile.description}" />
+    </select>
+    <button type="submit" class="btn btn-primary">Atualizar</button>
+</form>
