@@ -37,7 +37,7 @@ public class User {
 	private Boolean active = Boolean.FALSE;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(nullable = false)
+	@JoinColumn(nullable = true)
 	private Profile profile;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
