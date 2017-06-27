@@ -73,6 +73,7 @@ public class UserController {
 
         User user = mapper.map(userInput, User.class);
         userRepository.save(user);
+        userService.sendWelcomeEmail(user);
 		return new ModelAndView("redirect:/user/?usercreated=true");
 	}
 	
