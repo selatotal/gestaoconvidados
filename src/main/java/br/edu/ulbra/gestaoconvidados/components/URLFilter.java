@@ -1,12 +1,7 @@
 package br.edu.ulbra.gestaoconvidados.components;
 
 import br.edu.ulbra.gestaoconvidados.entities.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.springframework.web.filter.GenericFilterBean;
-
-import javax.security.sasl.AuthenticationException;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +17,7 @@ public class URLFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        String urls = "/,/login";
+        String urls = "/,/login,/forgotPassword,,/console/*";
         StringTokenizer token = new StringTokenizer(urls, ",");
 
         urlList = new ArrayList<String>();

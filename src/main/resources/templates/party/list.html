@@ -1,1 +1,50 @@
-Listagem de Festas
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Lista de Festas</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
+</head>
+
+<body>
+    <div class="panel panel-default" style="margin: 10px">
+        <div class="panel-heading">
+            <h1 class="panel-title">Listagem de Festas</h1>
+        </div>
+        
+  		<div class="panel panel-default">
+  			<div class="panel-body"><a th:href="@{ /}">Menu Principal</a></div>
+    		<div class="panel-body"><a th:href="@{ /party/new}">Adicionar</a></div>
+    		<div th:switch="${showLink}">
+    			<div th:case="'allParties'" class="panel-body"><a th:href="@{ /party/myParties}">Minhas Festas</a></div> 
+  				<div th:case="'myParties'" class="panel-body"><a th:href="@{ /party/}">Todas Festas</a></div> 
+			</div>
+    		    		
+  		</div>
+  		
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                    	<th>Nome</th>
+                        <th>Data</th>
+                        <th>Endereço</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="party : ${parties}">
+						<td th:text="${party.name}"></td>                    
+                        <td th:text="${#dates.format(party.dateTime, 'dd/MM/yyyy hh:mm:ss')}"></td>
+                        <td th:text="${party.address}"></td>
+                        <td><a th:href="@{ /party/{id}(id=${party.id})}">Detalhe</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

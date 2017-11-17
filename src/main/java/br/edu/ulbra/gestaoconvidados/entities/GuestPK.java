@@ -19,6 +19,17 @@ public class GuestPK implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(nullable = false)
 	private Party party;
+	
+	public GuestPK() {
+	}
+
+	public GuestPK(User guest, Party party) {
+		super();
+		this.guest = guest;
+		this.party = party;
+	}
+
+
 
 	public User getGuest() {
 		return guest;

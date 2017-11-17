@@ -26,10 +26,13 @@ public class Party {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(nullable = false)
 	private User owner;
+	
+	@Column(nullable = false)
+	private String name;
 
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(nullable = false)
-	private Date datetime;
+	private Date dateTime;
 
 	@Column(nullable = false)
 	private String address;
@@ -37,16 +40,19 @@ public class Party {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Guest> guests;
 
-	public Party() {
-
+	public Party() {}
+	
+	public Party(Long id) {
+		this.id = id;
 	}
 
-	public Party(Long id, User owner, Date datetime, String address, List<Guest> guests) {
+	public Party(Long id, User owner, Date dateTime, String address, List<Guest> guests, String name) {
 		this.id = id;
 		this.owner = owner;
-		this.datetime = datetime;
+		this.dateTime = dateTime;
 		this.address = address;
 		this.guests = guests;
+		this.name = name;
 	}
 
 	public Long getId() {
@@ -65,12 +71,12 @@ public class Party {
 		this.owner = owner;
 	}
 
-	public Date getDatetime() {
-		return datetime;
+	public Date getDateTime() {
+		return dateTime;
 	}
 
-	public void setDatetime(Date datetime) {
-		this.datetime = datetime;
+	public void setDateTime(Date dateTime) {
+		this.dateTime = dateTime;
 	}
 
 	public String getAddress() {
@@ -81,12 +87,21 @@ public class Party {
 		this.address = address;
 	}
 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	public List<Guest> getGuests() {
 		return guests;
 	}
 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	public void setGuests(List<Guest> guests) {
 		this.guests = guests;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }

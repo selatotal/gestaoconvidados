@@ -1,1 +1,59 @@
-Detalhes da Festa
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Lista de Convidados</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+	crossorigin="anonymous" />
+</head>
+<body>
+	<div class="panel panel-default" style="margin: 10px">
+		<div class="panel-heading">
+			<h1 class="panel-title">Detalhes da Festa</h1>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-body">Festa: <label th:text="${party.name}"> </label></div>
+  			<div class="panel-body"><a th:href="@{ /}">Menu Principal</a></div>  			
+  		</div>
+		<div class="panel-body">
+			Adicionar Convidado
+			<form class="form-inline" method="POST" style="margin: 20px 0" th:object="${user}" th:action="@{ /party/party/{id}/guest/new(id=${party.id}) }">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Nome" th:field="*{name}" /> 
+					<input type="text" class="form-control" placeholder="Email" th:field="*{email}" />
+					<input type="checkbox" class="form-control" placeholder="" th:field="*{active}" />
+					<button type="submit" class="btn btn-primary">Adicionar</button>
+				</div>
+			</form>
+			
+			<table class="table">
+				<thead>
+					<tr>
+						<th><label>Lista de Convidados</label></th>						
+					</tr>					
+				</thead>
+				<tbody>
+					<tr class="panel-title">
+						<td>Nome</td>
+						<td>Email</td>
+						<td>Confirmado</td>
+						<td></td>
+					</tr>
+					<tr th:each="guest : ${guests}">
+						<td th:text="${guest.id.guest.name}"></td>
+						<td th:text="${guest.id.guest.email}"></td>
+						<td th:text="${guest.confirmed}"></td>
+						<td><a th:href ="@{/party/party/{idParty}/guest/{idGuest}/delete(idParty=${party.id},idGuest=${guest.id.guest.id})}" class="btn btn-primary">Excluir</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
+

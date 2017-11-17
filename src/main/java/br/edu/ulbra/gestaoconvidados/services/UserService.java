@@ -7,13 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.mail.Message;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,7 +58,7 @@ public class UserService {
         return errors;
 
     }
-
+    
     public List<String> validateUpdate(UserInput userInput) {
 
         List<String> errors = validateNew(userInput);
@@ -75,7 +70,16 @@ public class UserService {
         return errors;
 
     }
-
+    
+    public void sendMessage(User user) {
+    	SimpleMailMessage mailMessage = new SimpleMailMessage();
+    	mailMessage.setTo(user.getEmail());
+    	mailMessage.setFrom(this.mailFrom);
+    	mailMessage.setText("Caro " + user.getName() + "\n" +
+                "Use este link para resetar sua senha: http://localhost:8080/");
+    	javaMailSender.send(mailMessage);
+    }
+    
     public void sendWelcomeEmail(User user){
 
         SimpleMailMessage message = new SimpleMailMessage();

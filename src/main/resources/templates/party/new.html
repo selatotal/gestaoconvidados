@@ -1,1 +1,39 @@
-Formulario nova Festa
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Lista de Convidados</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+	crossorigin="anonymous" />
+</head>
+<body>
+	<div class="panel panel-default" style="margin: 10px">
+		<div class="panel-heading">
+			<h1 class="panel-title">Formulário de Nova Festa</h1>
+		</div>
+		<div class="panel-body">
+		
+			<form class="form-inline" method="POST" style="margin: 20px 0" th:object="${party}" th:action="@{/party/new}">
+				<div class="form-group">
+					<select name="userId" class="form-control">
+						<option value="">Selecione um Usuário</option>						
+						<option th:each="user : ${users}" th:if="${user.active} == true" 
+							th:value="${user.id}"
+							th:text="${user.name}" />
+					</select>
+					<input type="text" class="form-control" placeholder="Nome" th:field="*{name}"/>
+					<input type="datetime" class="form-control" placeholder="dd/mm/yyyy hh:mm:ss" th:field="*{dateTime}"/>
+					<input type="text" class="form-control" placeholder="Endereço" th:field="*{address}"/>
+					<button type="submit" class="btn btn-primary">Adicionar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
+

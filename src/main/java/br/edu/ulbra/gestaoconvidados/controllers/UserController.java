@@ -6,7 +6,6 @@ import br.edu.ulbra.gestaoconvidados.services.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import br.edu.ulbra.gestaoconvidados.input.UserInput;
 import br.edu.ulbra.gestaoconvidados.repositories.ProfileRepository;
 
-import javax.jws.WebParam;
 import java.util.List;
 
 @Controller

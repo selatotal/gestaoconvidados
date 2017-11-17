@@ -1,8 +1,5 @@
 package br.edu.ulbra.gestaoconvidados.input;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 public class UserInput {
 
     private Long id;

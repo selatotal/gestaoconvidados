@@ -44,10 +44,15 @@ public class User {
 	private List<Guest> guests;
 	
 
-	public User(){
+	public User(){}
 		
+	public User(String email, String name, Boolean active) {
+		super();
+		this.email = email;
+		this.name = name;
+		this.active = active;
 	}
-	
+
 	public User(Long id, String email, String password, String name, Boolean active, Profile profile) {
 		this.id = id;
 		this.email = email;

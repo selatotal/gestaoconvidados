@@ -1,29 +1,44 @@
-<h1>Lista de Usuarios</h1>
-<div th:if='${param.usercreated }'>
-    Usuário criado com sucesso!
-</div>
-<div th:if='${param.userupdated }'>
-    Usuário atualizado com sucesso!
-</div>
-<div th:if='${param.usernotfound }'>
-    Usuário não encontrado!
-</div>
-<div th:if='${param.userdeleted }'>
-    Usuário excluído!
-</div>
-<div>
-    <a href="/user/new">Novo Usuário</a>
-</div>
-<table class="table">
-    <tbody>
-    <tr th:each="user : ${users}">
-        <td th:text="${user.email}"></td>
-        <td th:text="${user.name}"></td>
-        <td th:text="${user.profile.description}"></td>
-        <td><a th:href="@{ /user/{id}(id=${user.id}) }" >Editar</a></td>
-        <td><a th:href="@{ /user/{id}/delete(id=${user.id}) }" class="btn btn-danger">Excluir</a></td>
-    </tr>
-    </tbody>
-</table>
-
-
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Formulário de Usuários</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+	crossorigin="anonymous" />
+</head>
+<body>
+	<div class="panel panel-default" style="margin: 10px">
+		<h1>Lista de Usuarios</h1>
+		<div class="alert alert-success" th:if='${param.usercreated }'>Usuário
+			criado com sucesso!</div>
+		<div class="alert alert-success" th:if='${param.userupdated }'>Usuário
+			atualizado com sucesso!</div>
+		<div class="alert alert-warning" th:if='${param.usernotfound }'>Usuário
+			não encontrado!</div>
+		<div class="alert alert-success" th:if='${param.userdeleted }'>Usuário
+			excluído!</div>
+		<div>
+			<a href="/user/new">Novo Usuário</a>
+		</div>
+		<div class="panel-body">
+			<table class="table">
+				<tbody>
+					<tr th:each="user : ${users}" th:if="${user.active} == true">
+						<td th:text="${user.email}"></td>
+						<td th:text="${user.name}"></td>
+						<td th:text="${user.profile.description}"></td>
+						<td><a th:href="@{ /user/{id}(id=${user.id}) }">Editar</a></td>
+						<td><a th:href="@{ /user/{id}/delete(id=${user.id}) }"
+							class="btn btn-danger">Excluir</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
